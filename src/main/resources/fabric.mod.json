@@ -1,6 +1,26 @@
-"depends": {
-  "fabricloader": ">=0.19.3",
-  "minecraft": "~1.21.11",
-  "java": ">=21",
-  "fabric-api": "*"
+{
+  "schemaVersion": 1,
+  "id": "chatbubble",
+  "version": "${version}",
+  "name": "Chat Bubble",
+  "description": "Displays chat messages as speech bubbles over player heads.",
+  "authors": [
+    "insoo"
+  ],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.chatbubble.ChatBubbleClient"
+    ]
+  },
+  "mixins": [
+    "chatbubble.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
 }
