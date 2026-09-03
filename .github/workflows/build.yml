@@ -1,9 +1,10 @@
-name: Build mod jar
+name: Build Mod
 
 on:
   push:
     branches: [ "main", "master" ]
-  workflow_dispatch: {}
+  pull_request:
+    branches: [ "main", "master" ]
 
 jobs:
   build:
@@ -14,21 +15,17 @@ jobs:
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 21
+          java-version: '21'
+          distribution: 'temurin'
 
-      - name: Grant execute permission for gradlew
-        run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper --gradle-version 8.14
-          fi
-          chmod +x gradlew
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Build with Gradle
-        run: ./gradlew build --stacktrace
+        run: ./gradlew build
 
-      - name: Upload jar
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: chatbubble-jar
+          name: chatbubble-1.21.11
           path: build/libs/*.jar
