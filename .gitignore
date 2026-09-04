@@ -1,0 +1,24 @@
+# Gradle 編譯暫存與產出檔
+.gradle/
+build/
+out/
+
+# IDE 設定檔
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+
+# Minecraft 測試運行時產生的暫存檔 (run 資料夾)
+run/
+runClient/
+runServer/
+
+# 系統與日誌檔
+*.log
+.DS_Store
+Thumbs.db
