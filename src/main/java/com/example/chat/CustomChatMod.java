@@ -15,12 +15,12 @@ public class CustomChatMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // 使用 1.21.11 新版的 KeyBinding.Category 物件
+        // 使用 KeyBinding 的字串分類建構子
         configKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.customchat.open_config",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_K,
-                KeyBinding.Category.MISC
+                "key.categories.misc"
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
