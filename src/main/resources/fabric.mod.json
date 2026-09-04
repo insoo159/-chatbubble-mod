@@ -3,24 +3,19 @@
   "id": "chatbubble",
   "version": "${version}",
   "name": "Chat Bubble",
-  "description": "Displays chat messages as speech bubbles over player heads.",
-  "authors": [
-    "insoo"
-  ],
+  "description": "把聊天訊息改成漫畫對話泡泡樣式顯示",
+  "authors": ["insoo159"],
+  "contact": {},
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-    "client": [
-      "com.chatbubble.ChatBubbleClient"
-    ]
+    "client": ["com.chatbubble.ChatBubbleClient"]
   },
-  "mixins": [
-    "chatbubble.mixins.json"
-  ],
+  "mixins": ["chatbubble.mixins.json"],
   "depends": {
     "fabricloader": ">=0.19.3",
+    "fabric-api": "*",
     "minecraft": "~1.21.11",
-    "java": ">=21",
-    "fabric-api": "*"
+    "java": ">=21"
   }
 }
