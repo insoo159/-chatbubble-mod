@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 public class CustomChatMod implements ClientModInitializer {
@@ -16,12 +15,12 @@ public class CustomChatMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // 使用 KeyBinding.Category.create() 傳入 Identifier
+        // 使用原生的 KeyBinding 預設分類或 String 分類名稱
         configKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.customchat.open_config",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_K,
-                KeyBinding.Category.create(Identifier.of("customchat", "general"))
+                KeyBinding.MISC_CATEGORY
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
