@@ -1,21 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "chatbubble",
+  "id": "customchat",
   "version": "${version}",
-  "name": "Chat Bubble",
-  "description": "把聊天訊息改成漫畫對話泡泡樣式顯示",
-  "authors": ["insoo159"],
+  "name": "Custom Bubble Chat",
+  "description": "Renders Minecraft chat using custom speech bubbles.",
+  "authors": ["YourName"],
   "contact": {},
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-    "client": ["com.chatbubble.ChatBubbleClient"]
+    "client": [
+      "com.example.chat.CustomChatMod"
+    ]
   },
-  "mixins": ["chatbubble.mixins.json"],
+  "mixins": [
+    "customchat.mixins.json"
+  ],
   "depends": {
-    "fabricloader": ">=0.19.3",
-    "fabric-api": "*",
-    "minecraft": "~1.21.11",
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.21.1",
     "java": ">=21"
   }
 }
