@@ -10,16 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ChatHud.class)
 public class ChatHudMixin {
 
-    @Inject(method = "render", at = @At("HEAD"), cancellable = true, require = 0)
-    private void cancelVanillaChatRender(
-            DrawContext context, 
-            int currentTick, 
-            int mouseX, 
-            int mouseY, 
-            boolean focused, 
-            boolean isChatFocused, 
-            CallbackInfo ci) {
-        
-        // 保持原本裡面的程式碼（若原本無內容可留空）
+    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
+    private void chatbubble$cancelVanillaChatRender(DrawContext context, int currentTick, int mouseX, int mouseY, boolean focused, CallbackInfo ci) {
+        ci.cancel();
     }
 }
