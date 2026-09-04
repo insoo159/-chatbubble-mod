@@ -1,23 +1,40 @@
 name: Build Mod
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      # 1. 檢出程式碼
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. 設定 Java 21 (Minecraft 1.21.1 必須使用 JDK 21)
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+
+      # 3. 初始化 Gradle Wrapper (解決缺乏 gradlew 檔案的問題)
+      - name: Setup Gradle & Wrapper
+        run: |
+          gradle wrapper --gradle-version 8.8
+          chmod +x gradlew
+
+      # 4. 進行模組編譯打包
       - name: Build with Gradle
-        run: chmod +x gradlew && ./gradlew build
-      - name: Upload Artifact
+        run: ./gradlew build --no-daemon
+
+      # 5. 上傳編譯完成的 .jar 模組檔
+      - name: Upload Mod Jar
         uses: actions/upload-artifact@v4
         with:
-          name: mod-jar
+          name: CustomChat-Mod-JAR
           path: build/libs/*.jar
