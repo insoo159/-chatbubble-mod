@@ -15,24 +15,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. 設定 Java 21 (Minecraft 1.21.1 必須使用 JDK 21)
+      # 2. 設定 Java 21
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      # 3. 初始化 Gradle Wrapper (解決缺乏 gradlew 檔案的問題)
-      - name: Setup Gradle & Wrapper
+      # 3. 指定安裝 Gradle 8.8 (避免系統預設跳到 Gradle 9.x)
+      - name: Setup Gradle 8.8
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.8'
+
+      # 4. 生成 Wrapper 並進行編譯
+      - name: Build with Gradle
         run: |
           gradle wrapper --gradle-version 8.8
           chmod +x gradlew
+          ./gradlew build --no-daemon
 
-      # 4. 進行模組編譯打包
-      - name: Build with Gradle
-        run: ./gradlew build --no-daemon
-
-      # 5. 上傳編譯完成的 .jar 模組檔
+      # 5. 上傳產出的 .jar 檔案
       - name: Upload Mod Jar
         uses: actions/upload-artifact@v4
         with:
