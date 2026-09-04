@@ -16,15 +16,15 @@ public class ConfigScreen {
         ConfigCategory general = builder.getOrCreateCategory(Text.of("一般設定"));
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-        // 修正：使用 startFloatFieldBuilder 並設置數值範圍
-        general.addEntry(entryBuilder.startFloatFieldBuilder(Text.of("文字大小 (Text Scale)"), CustomChatMod.CONFIG.textScale)
+        // 修正：使用 startFloatField 建立浮點數設定項
+        general.addEntry(entryBuilder.startFloatField(Text.of("文字大小 (Text Scale)"), CustomChatMod.CONFIG.textScale)
                 .setDefaultValue(1.0f)
                 .setMin(0.5f)
                 .setMax(2.0f)
                 .setSaveConsumer(newValue -> CustomChatMod.CONFIG.textScale = newValue)
                 .build());
 
-        general.addEntry(entryBuilder.startFloatFieldBuilder(Text.of("框框大小 (Bubble Scale)"), CustomChatMod.CONFIG.bubbleScale)
+        general.addEntry(entryBuilder.startFloatField(Text.of("框框大小 (Bubble Scale)"), CustomChatMod.CONFIG.bubbleScale)
                 .setDefaultValue(1.0f)
                 .setMin(0.5f)
                 .setMax(2.0f)
