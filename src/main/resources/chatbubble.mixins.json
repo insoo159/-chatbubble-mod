@@ -1,9 +1,10 @@
 {
   "required": true,
-  "minVersion": "0.8",
-  "package": "com.chatbubble.mixin",
+  "package": "com.example.chat.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": ["ChatHudMixin"],
+  "mixins": [
+    "ChatHudMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
