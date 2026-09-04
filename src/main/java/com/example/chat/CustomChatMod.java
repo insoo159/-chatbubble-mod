@@ -1,32 +1,14 @@
 package com.example.chat;
 
 import com.example.chat.config.ModConfig;
-import com.example.chat.config.ConfigScreen;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import org.lwjgl.glfw.GLFW;
 
 public class CustomChatMod implements ClientModInitializer {
     public static ModConfig CONFIG = new ModConfig();
-    private static KeyBinding configKey;
 
     @Override
     public void onInitializeClient() {
-        // 使用 KeyBinding 的字串分類建構子
-        configKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.customchat.open_config",
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_K,
-                "key.categories.misc"
-        ));
-
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (configKey.wasPressed()) {
-                client.setScreen(ConfigScreen.create(client.currentScreen));
-            }
-        });
+        // 已移除 KeyBinding 註冊，避免 1.21.11 的方法不匹配問題
+        // 玩家可透過 Mod Menu 或設定菜單開啟 ConfigScreen
     }
 }
