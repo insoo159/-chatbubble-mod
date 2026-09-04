@@ -21,7 +21,6 @@ public class ChatHudMixin {
     private void renderCustomBubbleChat(DrawContext context, int currentTick, int mouseX, int mouseY, boolean focused, CallbackInfo ci) {
         if (this.visibleMessages.isEmpty()) return;
 
-        // 攔截原本的聊天室渲染，改用氣泡樣式繪製
         int yOffset = context.getScaledWindowHeight() - 40;
         int maxMessages = Math.min(this.visibleMessages.size(), 5);
 
@@ -30,17 +29,16 @@ public class ChatHudMixin {
             int alpha = (int) (255 * getLineOpacity(currentTick, line));
             if (alpha <= 0) continue;
 
-            // 繪製單條對話氣泡
             BubbleChatRenderer.renderBubble(context, line.content(), 10, yOffset, alpha);
-            yOffset -= 30; // 氣泡垂直間距
+            yOffset -= 30;
         }
 
-        // 取消原生聊天室繪製
         ci.cancel();
     }
 
     private float getLineOpacity(int currentTick, ChatHudLine.Visible line) {
-        int age = currentTick - line.creationTick();
+        // 修正：1.21.1 取得聊天訊息生成時間的方法名稱為 addedTime()
+        int age = currentTick - line.addedTime();
         if (age > 200) return 0.0f;
         if (age > 180) return (200 - age) / 20.0f;
         return 1.0f;
