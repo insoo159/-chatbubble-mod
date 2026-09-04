@@ -16,7 +16,7 @@ public class CustomChatMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // 使用 1.21.11 新版相容的 KeyBinding 寫法
+        // 使用 KeyBinding.Category.create() 傳入 Identifier
         configKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.customchat.open_config",
                 InputUtil.Type.KEYSYM,
