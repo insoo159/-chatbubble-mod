@@ -1,5 +1,5 @@
-- name: Build with Gradle
-  run: ./gradlew build --refresh-dependencies
+name: Build Mod
+
 on:
   push:
     branches: [ "main", "master" ]
@@ -22,18 +22,18 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      # 3. 指定安裝 Gradle 8.8 (避免系統預設跳到 Gradle 9.x)
+      # 3. 指定安裝 Gradle 8.8
       - name: Setup Gradle 8.8
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.8'
 
-      # 4. 生成 Wrapper 並進行編譯
+      # 4. 生成 Wrapper 並進行編譯 (加入 --refresh-dependencies)
       - name: Build with Gradle
         run: |
           gradle wrapper --gradle-version 8.8
           chmod +x gradlew
-          ./gradlew build --no-daemon
+          ./gradlew build --no-daemon --refresh-dependencies
 
       # 5. 上傳產出的 .jar 檔案
       - name: Upload Mod Jar
