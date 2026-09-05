@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ChatHud.class)
 public class ChatHudMixin {
 
-    // 使用模糊匹配或正確的 render 方法名稱，避免寫死舊版的 method_1805
     @Inject(
         method = "render", 
         at = @At("HEAD"), 
