@@ -11,7 +11,6 @@ public class BubbleChatRenderer {
         if (client.player == null || client.world == null || client.options.hudHidden) {
             return;
         }
-
-        // 在此處撰寫你的氣泡繪製邏輯
+        // 在此處撰寫繪製邏輯
     }
 }
