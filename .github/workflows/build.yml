@@ -1,5 +1,5 @@
-name: Build Mod
-
+- name: Build with Gradle
+  run: ./gradlew build --refresh-dependencies
 on:
   push:
     branches: [ "main", "master" ]
