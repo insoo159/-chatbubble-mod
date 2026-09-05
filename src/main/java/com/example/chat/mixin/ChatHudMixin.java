@@ -15,7 +15,7 @@ public class ChatHudMixin {
         at = @At("HEAD"), 
         cancellable = true
     )
-    private void onRender(DrawContext context, int currentTick, int mouseX, int mouseY, boolean focused, CallbackInfo ci) {
+    private void onRender(DrawContext context, int currentTick, int mouseX, int mouseY, boolean focused, boolean chatLineFocused, CallbackInfo ci) {
         // 自訂渲染邏輯
     }
 }
