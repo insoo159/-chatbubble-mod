@@ -2,8 +2,7 @@
   "required": true,
   "package": "com.example.chat.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
-  "client": [
+  "mixins": [
     "ChatHudMixin"
   ],
   "injectors": {
